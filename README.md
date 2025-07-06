@@ -20,6 +20,14 @@ return {
     },
 }
 ```
+### Vim-Plug
+1. Add fern.nvim to the vim-plug block in your `.vimrc` file:
+```
+call plug#begin('~/.vim/plugged')
+  Plug 'bugwhisperer418/fern.nvim'  << add this line!
+call plug#end()
+```
+2. Run the `:PlugInstall` command to install the plugin.
 
 ## Using Fern.nvim
 The plugin will be active only when the current buffer is a `.log` file, by default, or for whatever file extensions you've specified in your pluging setup config.
@@ -32,7 +40,7 @@ Annotations provide a shortcut to type that will be replaced with the correct En
 
 ### Shortcuts
 - `<TAB>`: Toggles a header's fold state to show/hide its contents.
-- `<leader>b`: Toggles the status of a ToDo entry under the cursor from Open >> Done >> Cancelled
+- `<leader>b`: Toggles the Task Entry under the cursor cyclically between Open(●) >> Done(✔) >> Cancelled(✖) statuses
 
 ## Found a bug? Got an idea for a new feature?
 Please open any tickets for bugs found or new feature requests here: [https://todo.sr.ht/~bugwhisperer/Fern-Issues](https://todo.sr.ht/~bugwhisperer/Fern-Issues).
