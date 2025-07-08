@@ -5,14 +5,15 @@ require("toggle")
 local M = {}
 
 
-M.setup = function()
-	-- Default configuration
+M.setup = function(user_config)
+	-- Extend Default configuration with user configs
+	local uconf = user_config or {}
 	local config = vim.tbl_deep_extend("force", {
 		filetype = "fernlog",
 		file_extensions = { "log" }, -- Only load for these filetypes
 		use_colorscheme_colors = true,
 		highlight_groups = {},
-	}, {})
+	}, uconf)
 
 	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 	parser_config.fernlog = {
@@ -45,7 +46,7 @@ M.setup = function()
 			vim.opt_local.foldmethod = "expr"
 			vim.opt_local.foldexpr = "v:lua.fernlog_fold_expr(v:lnum)"
 			-- Set fold options
-			vim.opt_local.foldlevel = 2
+			vim.opt_local.foldlevel = config.fold_lvl or 2
 			vim.opt_local.foldenable = true
 			vim.opt_local.foldnestmax = 6
 			-- Optional: Set custom fold text
@@ -78,7 +79,6 @@ M.setup = function()
 	})
 	-- Manual setup of queries here avoids user needing to
 	-- link/copy TS highlights file to their config dir
-	-- TODO: Check if there is a better way to do this
 	vim.treesitter.query.set("fernlog", "highlights", highlights_query)
 end
 

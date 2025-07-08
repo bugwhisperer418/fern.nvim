@@ -15,7 +15,9 @@ return {
         'bugwhisperer418/fern.nvim',
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         config = function()
-            require('fern').setup()
+            require('fern').setup {
+                fold_lvl = 1, -- folds levels to leave open @ start/open (default is 2)
+            }
         end,
     },
 }
