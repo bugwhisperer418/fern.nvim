@@ -4,17 +4,8 @@ require("toggle")
 
 local M = {}
 
-M.setup = function()
-	-- Setup Fern rapid entry abbreviations
-	local entries = {
-		ee = "○", -- event
-		ef = "❤", -- feel
-		et = "●", -- todo
-	}
-	for typo, correct in pairs(entries) do
-		vim.cmd("abbr " .. typo .. " " .. correct)
-	end
 
+M.setup = function()
 	-- Default configuration
 	local config = vim.tbl_deep_extend("force", {
 		filetype = "fernlog",
@@ -59,6 +50,17 @@ M.setup = function()
 			vim.opt_local.foldnestmax = 6
 			-- Optional: Set custom fold text
 			vim.opt_local.foldtext = "v:lua.fernlog_fold_text()"
+
+			-- Setup Fern rapid entry annotations
+			local entries = {
+				ee = "○", -- event
+				ef = "❤", -- feel
+				et = "●", -- task
+			}
+			for typo, correct in pairs(entries) do
+				vim.cmd("abbr " .. typo .. " " .. correct)
+			end
+
 			-- Set up specific keymaps for this filetype
 			vim.keymap.set("n", "<leader>b", toggle_entry_status, { desc = "Toggle status (●|✔|✖)" })
 			vim.keymap.set("n", "<TAB>", "za", { desc = "Toggle fold" })
