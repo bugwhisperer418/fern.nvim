@@ -1,6 +1,6 @@
 # Fern.nvim
 
-`fern.nvim` is a plugin that compliments the [Fern]() shell script for notetaking and journal management. It offers enhancements for neovim users to make day-to-day working with Fern Log files easier with features like:
+`fern.nvim` is a plugin that compliments the [Fern](https://git.sr.ht/~bugwhisperer/fern) shell script for notetaking and journal management. It offers enhancements for neovim users to make day-to-day working with Fern Log files easier with features like:
 - annotations for quick, rapid Entry creation (`e<?>`) with a standardized set of Unicode markers
 - keyboard shortcuts to toggle the status of a TODO entry from open >> done >> cancelled
 - folding of header lines (start with "#") to make working with longer files easier and reduce need to scroll
