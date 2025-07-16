@@ -13,6 +13,14 @@ M.setup = function(user_config)
 		file_extensions = { "log" }, -- Only load for these filetypes
 		use_colorscheme_colors = true,
 		highlight_groups = {},
+		annotations = {
+			enabled = true,
+			shortcuts = {
+				todo = "et",
+				feel = "ef",
+				event = "ee",
+			},
+		},
 		colors = {},
 		keybindings = {
 			entry_toggle = "<leader>b",
@@ -57,14 +65,11 @@ M.setup = function(user_config)
 			-- Optional: Set custom fold text
 			vim.opt_local.foldtext = "v:lua.fernlog_fold_text()"
 
-			-- Setup Fern rapid entry annotations
-			local entries = {
-				ee = "○", -- event
-				ef = "❤", -- feel
-				et = "●", -- task
-			}
-			for typo, correct in pairs(entries) do
-				vim.cmd("abbr " .. typo .. " " .. correct)
+			-- Setup Fern rapid entry annotations with Vim abbreviations
+			if config.annotations.enabled then
+				vim.cmd("abbr " .. config.annotations.shortcuts.event .. " ○")
+				vim.cmd("abbr " .. config.annotations.shortcuts.feel .. " ❤")
+				vim.cmd("abbr " .. config.annotations.shortcuts.todo .. " ●")
 			end
 
 			-- Set up Vim user commands

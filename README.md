@@ -41,6 +41,15 @@ return {
 				feel = { fg = "#87cefa" },
 				emphasis = { fg = "#d1242f", bg = "#ffebe9" },
 			},
+			-- customize entry annotations
+			annotations = {
+				enabled = true,
+				shortcuts = {
+					todo = "et",
+					feel = "ef",
+					event = "ee",
+				},
+			},
 			-- custom fern keybindings
 			keybindings = {
 				entry_toggle = "<leader>b",
