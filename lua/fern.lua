@@ -4,7 +4,6 @@ require("toggle")
 
 local M = {}
 
-
 M.setup = function(user_config)
 	-- Extend Default configuration with user configs
 	local uconf = user_config or {}
@@ -13,6 +12,7 @@ M.setup = function(user_config)
 		file_extensions = { "log" }, -- Only load for these filetypes
 		use_colorscheme_colors = true,
 		highlight_groups = {},
+		colors = {},
 	}, uconf)
 
 	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -69,12 +69,12 @@ M.setup = function(user_config)
 	})
 
 	-- Set up highlights
-	setup_highlights()
+	setup_highlights(config.colors)
 	vim.api.nvim_create_augroup("FernlogHighlights", { clear = true })
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		group = "FernlogHighlights",
 		callback = function()
-			setup_highlights()
+			setup_highlights(config.colors)
 		end,
 	})
 	-- Manual setup of queries here avoids user needing to

@@ -24,19 +24,29 @@ highlights_query = [[
 ]]
 
 -- Define highlight groups
-function setup_highlights()
+function setup_highlights(user_colors)
+	-- Default colors for entries and markers
+	local colors = vim.tbl_deep_extend("force", {
+		header = { fg = "#575075" },
+		todo = { fg = "#3cb371" },
+		done = { fg = "#466853" },
+		cancelled = { fg = "#98776a" },
+		question = { fg = "#daa520" },
+		feel = { fg = "#87cefa" },
+		emphasis = { fg = "#d1242f", bg = "#ffebe9" },
+	}, user_colors)
 	-- Header highlights
-	vim.api.nvim_set_hl(0, "@keyword.fernlog", { link = "Keyword" })
-	vim.api.nvim_set_hl(0, "@title.fernlog", { link = "Title" })
+	vim.api.nvim_set_hl(0, "@keyword.fernlog", { link = "Keyword", fg = colors.header.fg })
+	vim.api.nvim_set_hl(0, "@title.fernlog", { link = "Title", fg = colors.header.fg })
 	-- Entry type markers
-	vim.api.nvim_set_hl(0, "@punctuation.special.fernlog", { fg = "#3cb371", bold = true }) -- ToDo Task
-	vim.api.nvim_set_hl(0, "@argument", { fg = "#466853", bold = true }) -- Done Task
-	vim.api.nvim_set_hl(0, "@function", { fg = "#98776a", bold = true }) -- Cancelled Task
-	vim.api.nvim_set_hl(0, "@info.fernlog", { fg = "#daa520", bold = true }) -- Question marker
-	vim.api.nvim_set_hl(0, "@type.fernlog", { fg = "#87cefa", bold = true }) -- Feel marker
+	vim.api.nvim_set_hl(0, "@punctuation.special.fernlog", { fg = colors.todo.fg, bold = true }) -- ToDo Task
+	vim.api.nvim_set_hl(0, "@argument", { fg = colors.done.fg, bold = true }) -- Done Task
+	vim.api.nvim_set_hl(0, "@function", { fg = colors.cancelled.fg, bold = true }) -- Cancelled Task
+	vim.api.nvim_set_hl(0, "@info.fernlog", { fg = colors.question.fg, bold = true }) -- Question marker
+	vim.api.nvim_set_hl(0, "@type.fernlog", { fg = colors.feel.fg, bold = true }) -- Feel marker
 	-- Extra Red background highlight for Emphasis markers to call it out
 	vim.api.nvim_set_hl(0, "@error.fernlog", {
-		bg = "#ffebe9",
-		fg = "#d1242f",
+		bg = colors.emphasis.bg,
+		fg = colors.emphasis.fg,
 	})
 end

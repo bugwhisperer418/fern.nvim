@@ -15,9 +15,19 @@ return {
         'bugwhisperer418/fern.nvim',
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         config = function()
-            require('fern').setup {
-                fold_lvl = 1, -- folds levels to leave open @ start/open (default is 2)
-            }
+		require('fern').setup {
+			fold_lvl = 2, -- folds levels to leave open @ start/open
+			-- default colors for entries are shown below. ommitting any falls back to the default.
+			colors = {
+				header = { fg = "#575075" },
+				todo = { fg = "#3cb371" },
+				done = { fg = "#466853" },
+				cancelled = { fg = "#98776a" },
+				question = { fg = "#daa520" },
+				feel = { fg = "#87cefa" },
+				emphasis = { fg = "#d1242f", bg = "#ffebe9" },
+			},
+		}
         end,
     },
 }
