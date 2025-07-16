@@ -14,6 +14,10 @@ M.setup = function(user_config)
 		use_colorscheme_colors = true,
 		highlight_groups = {},
 		colors = {},
+		keybindings = {
+			entry_toggle = "<leader>b",
+			fold_toggle = "<TAB>",
+		},
 	}, uconf)
 
 	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -67,8 +71,13 @@ M.setup = function(user_config)
 			setup_user_commands()
 
 			-- Set up specific keymaps for this filetype
-			vim.keymap.set("n", "<leader>b", toggle_entry_status, { desc = "Toggle status (●|✔|✖)" })
-			vim.keymap.set("n", "<TAB>", "za", { desc = "Toggle fold" })
+			vim.keymap.set(
+				"n",
+				config.keybindings.entry_toggle,
+				toggle_entry_status,
+				{ desc = "Toggle status (●|✔|✖)" }
+			)
+			vim.keymap.set("n", config.keybindings.fold_toggle, "za", { desc = "Toggle fold" })
 		end,
 	})
 

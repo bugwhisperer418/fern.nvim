@@ -9,6 +9,20 @@
 
 ## Installing Fern.nvim
 ### Lazy.nvim
+This is the minimum plugin config for setup. This will accept all of the default values:
+```lua
+return {
+    {
+        'bugwhisperer418/fern.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        config = function()
+		require('fern').setup {}
+        end,
+    },
+}
+```
+
+To customize your Fern setup, pass a table with any of the followings attributes to set desired values. The default value for all customizable config options are in the table passed to `setup` below. Ommitting any config entries will cause it to fallback to the default value (ie. you only need to pass items you wish to change).
 ```lua
 return {
     {
@@ -17,7 +31,7 @@ return {
         config = function()
 		require('fern').setup {
 			fold_lvl = 2, -- folds levels to leave open @ start/open
-			-- default colors for entries are shown below. ommitting any falls back to the default.
+			-- custom colors for headers, entries and markers
 			colors = {
 				header = { fg = "#575075" },
 				todo = { fg = "#3cb371" },
@@ -27,14 +41,20 @@ return {
 				feel = { fg = "#87cefa" },
 				emphasis = { fg = "#d1242f", bg = "#ffebe9" },
 			},
+			-- custom fern keybindings
+			keybindings = {
+				entry_toggle = "<leader>b",
+				fold_toggle = "<TAB>",
+			},
 		}
         end,
     },
 }
 ```
+
 ### Vim-Plug
 1. Add fern.nvim to the vim-plug block in your `.vimrc` file:
-```
+```vim
 call plug#begin('~/.vim/plugged')
   Plug 'bugwhisperer418/fern.nvim'  << add this line!
 call plug#end()
