@@ -1,6 +1,7 @@
 require("folding")
 require("highlights")
 require("toggle")
+require("commands")
 
 local M = {}
 
@@ -61,6 +62,9 @@ M.setup = function(user_config)
 			for typo, correct in pairs(entries) do
 				vim.cmd("abbr " .. typo .. " " .. correct)
 			end
+
+			-- Set up Vim user commands
+			setup_user_commands()
 
 			-- Set up specific keymaps for this filetype
 			vim.keymap.set("n", "<leader>b", toggle_entry_status, { desc = "Toggle status (●|✔|✖)" })
