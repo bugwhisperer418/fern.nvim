@@ -5,10 +5,15 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 ### Added
 - CHANGELOG.md
+- Function to close all folds back to user set Fold Level
+- Customizable fold keys open all & close all
 
 ### Changed
+- Toggle Fold default set back to NeoVim default of `za`
+- Updated Readme
 
 ### Removed
+- Global fernlog fold functions
 
 ## [0.2.0] - 2025-07-16
 

@@ -24,7 +24,9 @@ M.setup = function(user_config)
 		colors = {},
 		keybindings = {
 			entry_toggle = "<leader>b",
-			fold_toggle = "<TAB>",
+			fold_toggle = "za",
+			fold_open_all = "zR",
+			fold_close_all = "zM",
 		},
 	}, uconf)
 
@@ -83,6 +85,10 @@ M.setup = function(user_config)
 				{ desc = "Toggle status (●|✔|✖)" }
 			)
 			vim.keymap.set("n", config.keybindings.fold_toggle, "za", { desc = "Toggle fold" })
+			vim.keymap.set("n", config.keybindings.fold_open_all, "zR", { desc = "Open all folds" })
+			vim.keymap.set("n", config.keybindings.fold_close_all, function()
+				ferlog_close_all_folds(config.fold_lvl)
+			end, { desc = "Close all folds to Fern fold lvl" })
 		end,
 	})
 

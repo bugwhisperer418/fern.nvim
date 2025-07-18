@@ -32,7 +32,8 @@ function fernlog_fold_text()
 	return "╣ " .. text .. string.format(" (%d lines)", line_count)
 end
 
--- Make fold functions globally accessible
--- TODO: Check if there a better way to do this
-_G.fernlog_fold_expr = fernlog_fold_expr
-_G.fernlog_fold_text = fernlog_fold_text
+-- Close all folds higher than user set fold level
+function ferlog_close_all_folds(fold_lvl)
+	-- Re-set fold level to fold all entries exceeding that level
+	vim.opt_local.foldlevel = fold_lvl
+end

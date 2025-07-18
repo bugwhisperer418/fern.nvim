@@ -53,7 +53,9 @@ return {
 			-- custom fern keybindings
 			keybindings = {
 				entry_toggle = "<leader>b",
-				fold_toggle = "<TAB>",
+				fold_toggle = "za",
+				fold_open_all = "zR",
+				fold_close_all = "zM",
 			},
 		}
         end,
@@ -80,7 +82,7 @@ Annotations provide a shortcut to type that will be replaced with the correct En
 - `ef<space>`: **E**ntry **F**eeling (ex. "❤ ")
 
 ### Shortcuts
-- `<TAB>`: Toggles a header's fold state to show/hide its contents.
+- `zM`: Toggles all header folds, above the Ferlog user set Fold Level, to closed state and hides their contents.
 - `<leader>b`: Toggles the Task Entry under the cursor cyclically between Open(●) >> Done(✔) >> Cancelled(✖) statuses
 
 ## Found a bug? Got an idea for a new feature?
