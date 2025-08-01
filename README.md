@@ -6,6 +6,7 @@
 - folding of header lines (start with "#") to make working with longer files easier and reduce need to scroll
 - highlights of Log entry item markers and headers
 - special highlight to call out entry items marked as important with "!" or "?"
+- syntax highlighting for inline content: tags, code blocks, and links
 
 ## Installing Fern.nvim
 ### Lazy.nvim
@@ -40,6 +41,9 @@ return {
 				question = { fg = "#daa520" },
 				feel = { fg = "#87cefa" },
 				emphasis = { fg = "#d1242f", bg = "#ffebe9" },
+				tag = { fg = "#ff6b6b" },
+				inline_code = { fg = "#50fa7b", bg = "#282a36" },
+				link = { fg = "#8be9fd" },
 			},
 			-- customize entry annotations
 			annotations = {
@@ -56,6 +60,11 @@ return {
 				fold_toggle = "za",
 				fold_open_all = "zR",
 				fold_close_all = "zM",
+			},
+			-- link concealment settings
+			conceal = {
+				enabled = true,
+				level = 2, -- 0=show all, 1=hide in normal mode, 2=hide unless cursor on line
 			},
 		}
         end,

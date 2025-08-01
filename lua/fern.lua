@@ -28,6 +28,10 @@ M.setup = function(user_config)
 			fold_open_all = "zR",
 			fold_close_all = "zM",
 		},
+		conceal = {
+			enabled = true,
+			level = 2, -- hides, unless cursor on line
+		},
 	}, uconf)
 
 	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -66,6 +70,17 @@ M.setup = function(user_config)
 			vim.opt_local.foldnestmax = 6
 			-- Optional: Set custom fold text
 			vim.opt_local.foldtext = "v:lua.fernlog_fold_text()"
+
+			-- Setup concealment for links
+			if config.conceal.enabled then
+				vim.opt_local.conceallevel = config.conceal.level
+				vim.opt_local.concealcursor = "" -- Show concealed text when cursor is on line
+				local conceals_query = [[
+					;; Conceal URL parts of links to make them invisible
+					(link_url) @conceal (#set! conceal "")
+				]]
+				vim.treesitter.query.set("fernlog", "conceals", conceals_query)
+			end
 
 			-- Setup Fern rapid entry annotations with Vim abbreviations
 			if config.annotations.enabled then

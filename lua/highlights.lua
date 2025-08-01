@@ -21,6 +21,12 @@ highlights_query = [[
   ;; Entries with emphasis marker (should be very visible)
   (entry 
     mark: (emphasis)) @error
+  ;; Inline content highlighting
+  (tag) @tag
+  (code) @string.special
+  ;; Link highlighting
+  (link_markdown) @markup.link
+  (link_wiki) @markup.link
 ]]
 
 -- Define highlight groups
@@ -34,6 +40,9 @@ function setup_highlights(user_colors)
 		question = { fg = "#daa520" },
 		feel = { fg = "#87cefa" },
 		emphasis = { fg = "#d1242f", bg = "#ffebe9" },
+		tag = { fg = "#ff6b6b" },
+		inline_code = { fg = "#50fa7b", bg = "#282a36" },
+		link = { fg = "#8be9fd" },
 	}, user_colors)
 	-- Header highlights
 	vim.api.nvim_set_hl(0, "@keyword.fernlog", { link = "Keyword", fg = colors.header.fg })
@@ -49,4 +58,12 @@ function setup_highlights(user_colors)
 		bg = colors.emphasis.bg,
 		fg = colors.emphasis.fg,
 	})
+	-- Inline content highlights
+	vim.api.nvim_set_hl(0, "@tag.fernlog", { fg = colors.tag.fg, bold = true })
+	vim.api.nvim_set_hl(0, "@string.special.fernlog", {
+		fg = colors.inline_code.fg,
+		bg = colors.inline_code.bg,
+		italic = true,
+	})
+	vim.api.nvim_set_hl(0, "@markup.link.fernlog", { fg = colors.link.fg, underline = true })
 end
