@@ -2,12 +2,12 @@
 -- used for manual setup in M.setup()
 highlights_query = [[
   ; Header markers
-  (h1_marker) @keyword
-  (h2_marker) @keyword
-  (h3_marker) @keyword
-  (h4_marker) @keyword
-  (h5_marker) @keyword
-  (h6_marker) @keyword
+  (h1) @text.title.1
+  (h2) @text.title.2
+  (h3) @text.title.3
+  (h4) @text.title.4
+  (h5) @text.title.5
+  (h6) @text.title.6
   ;; Header content
   (header_content) @title
   ;; Entry type markers - use different colors for different types
@@ -33,20 +33,29 @@ highlights_query = [[
 function setup_highlights(user_colors)
 	-- Default colors for entries and markers
 	local colors = vim.tbl_deep_extend("force", {
-		header = { fg = "#575075" },
-		todo = { fg = "#3cb371" },
-		done = { fg = "#466853" },
-		cancelled = { fg = "#98776a" },
+		h1 = { fg = "#c4a7e7", bg = "#56526e" },
+		h2 = { fg = "#9ccfd8" },
+		h3 = { fg = "#ea9a97" },
+		h4 = { fg = "#f6c177" },
+		h5 = { fg = "#f6c177" },
+		h6 = { fg = "#f6c177" },
+		todo = { fg = "#95b1ac" },
+		done = { fg = "#6e6a86" },
+		cancelled = { fg = "#6e6a86" },
 		question = { fg = "#daa520" },
 		feel = { fg = "#87cefa" },
-		emphasis = { fg = "#d1242f", bg = "#ffebe9" },
-		tag = { fg = "#ff6b6b" },
-		inline_code = { fg = "#50fa7b", bg = "#282a36" },
+		emphasis = { fg = "#eb6f92", bg = "#56526e" },
+		tag = { fg = "#908caa", bg = "#44415a" },
+		inline_code = { fg = "#95b1ac", bg = "#44415a" },
 		link = { fg = "#8be9fd" },
 	}, user_colors)
 	-- Header highlights
-	vim.api.nvim_set_hl(0, "@keyword.fernlog", { link = "Keyword", fg = colors.header.fg })
-	vim.api.nvim_set_hl(0, "@title.fernlog", { link = "Title", fg = colors.header.fg })
+	vim.api.nvim_set_hl(0, "@text.title.1.fernlog", { fg = colors.h1.fg, bg = colors.h1.bg, bold = true })
+	vim.api.nvim_set_hl(0, "@text.title.2.fernlog", { fg = colors.h2.fg, bold = true })
+	vim.api.nvim_set_hl(0, "@text.title.3.fernlog", { fg = colors.h3.fg, bold = true })
+	vim.api.nvim_set_hl(0, "@text.title.4.fernlog", { fg = colors.h4.fg, bold = true })
+	vim.api.nvim_set_hl(0, "@text.title.5.fernlog", { fg = colors.h5.fg, bold = true })
+	vim.api.nvim_set_hl(0, "@text.title.6.fernlog", { fg = colors.h6.fg, bold = true })
 	-- Entry type markers
 	vim.api.nvim_set_hl(0, "@punctuation.special.fernlog", { fg = colors.todo.fg, bold = true }) -- ToDo Task
 	vim.api.nvim_set_hl(0, "@argument", { fg = colors.done.fg, bold = true }) -- Done Task
@@ -59,7 +68,7 @@ function setup_highlights(user_colors)
 		fg = colors.emphasis.fg,
 	})
 	-- Inline content highlights
-	vim.api.nvim_set_hl(0, "@tag.fernlog", { fg = colors.tag.fg, bold = true })
+	vim.api.nvim_set_hl(0, "@tag.fernlog", { fg = colors.tag.fg, bg = colors.tag.bg, italic = true })
 	vim.api.nvim_set_hl(0, "@string.special.fernlog", {
 		fg = colors.inline_code.fg,
 		bg = colors.inline_code.bg,
